@@ -15,9 +15,17 @@ public class PetService implements IPetService {
 
     @Override
     public Pet add(PetDto pet) {
-        //調用資料庫
+        //調用資料庫 新增
         Pet petEntity = new Pet();
-        BeanUtils.copyProperties(pet,petEntity);  //把前面物件資料複製到後面物件(名稱型別相同)
+        BeanUtils.copyProperties(pet, petEntity);  //把前面物件資料複製到後面物件(名稱型別相同)
         return petRepository.save(petEntity);  //.save新增修改可用 此為新增 自動判斷(有id修改 沒id新增)
+    }
+
+    @Override
+    public Pet getPet(int petID) {
+        //調用資料庫 查詢
+        return petRepository.findById(petID).orElseThrow(() -> { //查到: 返回pet 查不到: 丟出錯誤
+            throw new IllegalArgumentException("該寵物不存在");
+        });
     }
 }

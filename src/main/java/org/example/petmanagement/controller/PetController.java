@@ -21,19 +21,19 @@ public class PetController {
     //RESTful API
     //新增
     @PostMapping         // method: post URL: localhost:8080/pet
-    public ResponseMessage<Pet> add(@Validated @RequestBody PetDto pet){ //@Validated要驗證的參數 @RequestBody 接RequestBody裡的資料
+    public ResponseMessage<Pet> addPet(@Validated @RequestBody PetDto pet){ //@Validated要驗證的參數 @RequestBody 接RequestBody裡的資料
         Pet petNew = petService.add(pet);
         return ResponseMessage.success(petNew);
     }
 
-
-    @GetMapping("/name")
-    public String getName(){
-        System.out.println("Hi!");
-        return "Hello World";
+    //查詢
+    @GetMapping("/{petId}") // method: get URL: localhost:8080/pet/{id}
+    public ResponseMessage<Pet> getPet(@PathVariable int petId){ //接 url 的變數 / @PathVariable: RESTful 查詢 / @RequestParam :查詢條件
+        Pet petGet = petService.getPet(petId);
+        return ResponseMessage.success(petGet);
     }
 
-    //查詢
+
     //@GetMapping
 
     //修改
