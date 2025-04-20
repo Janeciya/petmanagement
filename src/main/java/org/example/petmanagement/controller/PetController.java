@@ -1,6 +1,7 @@
 package org.example.petmanagement.controller;
 
 import org.example.petmanagement.dto.PetDto;
+import org.example.petmanagement.dto.ResponseMessage;
 import org.example.petmanagement.repository.PetRepository;
 import org.example.petmanagement.entity.Pet;
 import org.example.petmanagement.service.IPetService;
@@ -19,9 +20,9 @@ public class PetController {
     //RESTful API
     //新增
     @PostMapping         // method: post URL: localhost:8080/pet
-    public String add(@RequestBody PetDto pet){
+    public ResponseMessage<Pet> add(@RequestBody PetDto pet){
         Pet petNew = petService.add(pet);
-        return "success";
+        return ResponseMessage.success(petNew);
     }
 
 
