@@ -10,6 +10,8 @@ public interface IPetService {
     Pet add(PetDto pet);
     //查詢寵物 @petID 寵物id
     Pet get(int petID);
-    //修改寵物 @@pet 修改寵物參數
+    //修改寵物 @pet 修改寵物參數
     Pet update(PetUpdateDto pet);
+    //刪除寵物 @pet 寵物id
+    void delete(int petId);
 }

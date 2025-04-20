@@ -20,6 +20,11 @@ public class ResponseMessage<T> {
         return new ResponseMessage(HttpStatus.OK.value(), "success", data);
     }//return 只能回傳一個值/物件 建立物件包含code message data
 
+    public static <T> ResponseMessage<T> success(){
+        //回傳
+        return new ResponseMessage(HttpStatus.OK.value(), "success", null);
+    }//return 只能回傳一個值/物件 建立物件包含code message data
+
     public int getCode() {
         return code;
     }

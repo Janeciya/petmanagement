@@ -36,4 +36,9 @@ public class PetService implements IPetService {
         BeanUtils.copyProperties(pet, petUpdate);
         return petRepository.save(petUpdate);
     }
+
+    @Override
+    public void delete(int petId) {
+        petRepository.deleteById(petId);
+    }
 }

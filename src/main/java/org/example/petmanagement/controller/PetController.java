@@ -35,12 +35,16 @@ public class PetController {
     }
 
     //修改
-    @PutMapping
-    public ResponseMessage<Pet> updatePet(@Validated @RequestBody PetUpdateDto pet){ //@Validated要驗證的參數 @RequestBody 接RequestBody裡的資料
+    @PutMapping         // method: put URL: localhost:8080/pet
+    public ResponseMessage<Pet> updatePet(@Validated @RequestBody PetUpdateDto pet){
         Pet petNew = petService.update(pet);
         return ResponseMessage.success(petNew);
     }
 
     //刪除
-
+    @DeleteMapping("/{petId}") // method: delete URL: localhost:8080/pet/{id}
+    public ResponseMessage<Pet> deletePet(@PathVariable int petId){
+        petService.delete(petId);
+        return ResponseMessage.success();
+    }
 }
