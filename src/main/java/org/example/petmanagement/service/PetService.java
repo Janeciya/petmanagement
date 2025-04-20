@@ -1,6 +1,7 @@
 package org.example.petmanagement.service;
 
 import org.example.petmanagement.dto.PetDto;
+import org.example.petmanagement.dto.PetUpdateDto;
 import org.example.petmanagement.entity.Pet;
 import org.example.petmanagement.repository.PetRepository;
 import org.springframework.beans.BeanUtils;
@@ -22,10 +23,17 @@ public class PetService implements IPetService {
     }
 
     @Override
-    public Pet getPet(int petID) {
+    public Pet get(int petID) {
         //調用資料庫 查詢
         return petRepository.findById(petID).orElseThrow(() -> { //查到: 返回pet 查不到: 丟出錯誤
             throw new IllegalArgumentException("該寵物不存在");
         });
+    }
+
+    @Override
+    public Pet update(PetUpdateDto pet) {
+        Pet petUpdate = new Pet();
+        BeanUtils.copyProperties(pet, petUpdate);
+        return petRepository.save(petUpdate);
     }
 }
