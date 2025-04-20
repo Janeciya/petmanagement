@@ -1,7 +1,10 @@
 package org.example.petmanagement.dto;
 
+import jakarta.validation.constraints.NotEmpty;
+
 public class PetDto {
 
+    @NotEmpty(message = "寵物名稱不可為空") //驗證參數不可為空
     private String petName;             //寵物名字
     private String petType;             //寵物品種
     private double petAge;              //寵物年齡

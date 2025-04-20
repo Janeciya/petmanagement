@@ -6,6 +6,7 @@ import org.example.petmanagement.repository.PetRepository;
 import org.example.petmanagement.entity.Pet;
 import org.example.petmanagement.service.IPetService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class PetController {
     //RESTful API
     //新增
     @PostMapping         // method: post URL: localhost:8080/pet
-    public ResponseMessage<Pet> add(@RequestBody PetDto pet){
+    public ResponseMessage<Pet> add(@Validated @RequestBody PetDto pet){ //@Validated要驗證的參數 @RequestBody 接RequestBody裡的資料
         Pet petNew = petService.add(pet);
         return ResponseMessage.success(petNew);
     }
